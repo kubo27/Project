@@ -1,11 +1,11 @@
 This project is for created for personal learning purpose. 
 
 It covers:
-🟢 Oracle Linux
-🟢 SQL (PostgreSQL)
-🟢 Docker
-🟢 K8s
-🟢 Java/Python coding
-🟢 AWS
-🟢 Jenkins
-🟢 Prometheus + Grafana
+<br>🟢 Oracle Linux
+<br>🟢 SQL (PostgreSQL)
+<br>🟢 Docker
+<br>🟢 K8s
+<br>🟢 Java/Python coding
+<br>🟢 AWS
+<br>🟢 Jenkins
+<br>🟢 Prometheus + Grafana
