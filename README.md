@@ -1,4 +1,4 @@
-This project is for created for personal learning purpose. 
+This project is created for personal learning purpose 📖. 
 
 It covers:
 <br>🟢 Oracle Linux
