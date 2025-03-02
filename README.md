@@ -43,7 +43,7 @@ that will run Docker containers, orchastrated with K8s, deployed on AWS EKS with
 </br>
 <b>Icons: ✅- Done,🧠 -working on it, ❌ - ongoing </b>
 
-<br><b>Task_1 PostrgeSQL (docker: PSQL) ✅ </b>
+<br><b>Task_1 PostrgeSQL (docker: postgres_db) ✅ </b>
 
 A) Deploy a PostgreSQL in docker ✅
 
@@ -53,7 +53,7 @@ C) Create test table ✅
 
 D) Test connction ✅
 
-E) Create tables via pgAdmin<i>credentials(id,username, password_hash, email)</i> and <i> userstat(username,status) </i> and <i> userlog(userlog_id,username,login_status,geo_ip,timestamp) ✅
+E) Create tables via pgAdmin <i>credentials(id,username, password_hash, email)</i> and <i> userstat(username,status) </i> and <i> userlog(userlog_id,username,login_status,geo_ip,timestamp) ✅
 
 <b>Task_2 Backend (docker: java_be) 🧠 </b>
 
