@@ -39,7 +39,7 @@
 
 </br> I designed specific SQL queries to create a tables and relations between them.
 
-<br> <i> CREATE TABLE credentials (
+<br>  CREATE TABLE credentials (
 	username varchar(255) PRIMARY KEY,
 	password_hash varchar(72) NOT NULL,
 	email varchar(255) NOT NULL
@@ -60,5 +60,4 @@ CREATE TABLE userlog(
 	tmstmp TIMESTAMP NOT NULL,
 
 	FOREIGN KEY (username) REFERENCES credentials (username)
-) </i>
-</br>
+) 
