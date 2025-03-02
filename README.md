@@ -45,14 +45,21 @@ Icons: ✅- Done,🧠 -working on it, ❌ - ongoing
 
 <br>Task_1 PostrgeSQL (docker: PSQL) ✅
 A) Deploy a PostgreSQL in docker ✅
+
 B) Create a database ✅
+
 C) Create test table ✅
+
 D) Test connction ✅
+
 E) Create tables via pgAdmin<i>credentials(id,username, password_hash, email)</i> and <i> userstat(username,status) </i> and <i> userlog(userlog_id,username,login_status,geo_ip,timestamp) ✅
 
 Task_2 Backend (docker: java_be) 🧠
+
 A) Create a project with Java Spring Boot Framework 🧠
+
 B) Configure a connection to PostgreSQL ❌
+
 </br>
 
 
