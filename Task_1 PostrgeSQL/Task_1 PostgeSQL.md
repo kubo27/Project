@@ -9,9 +9,9 @@
 <br>
 <br> Postgres instace was started <i> docker ps </i>
 <br>
-<br> ![alt text](image.png)
+<br> ![alt text](images/image.png)
 <br>
-<br> I connected to the container via psql (terminal connection) running the following command>
+<br> I connected to the container via psql (terminal connection) running the following command:
 <br> <i> docker exec -it postgres-db psql -d main_db -U test </i> # -it interactive terminal, -d database name, -U username
 <br>
 <br> Simple table was created <i> docker exec -it postgres-db psql -d main_db -U test -c 'CREATE TABLE users(id int, username char(8),password char(8))' </i>
@@ -20,18 +20,18 @@
 <br>
 <br> Quick check <i>  docker exec -it postgres-db psql -d main_db -U test -c "SELECT * FROM users;" </i>
 <br>
-<br> ![alt text](image-4.png)
+<br> ![alt text](images/image-4.png)
 <br>
 <br>
 <br> As we can see the postgres-db container is listening on 0.0.0.0:5432
 <br>
-<br>![alt text](image-2.png)
+<br>![alt text](images/image-2.png)
 <br>
 <br> So I ran simple test via PGadmin (I wanted to join to that database from my host computer)
 <br>
 <br> I dumped incoming packets via <i> tcpdump -nli any port 5432 </i> so I could see what is going on.
 <br> As we can see the test ran successfully.
 <br>
-<br>![alt text](image-6.png)
+<br>![alt text](images/image-6.png)
 <br>
-<br> ![alt text](image-5.png)
+<br> ![alt text](images/image-5.png)
