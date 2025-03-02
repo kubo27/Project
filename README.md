@@ -16,14 +16,14 @@ It covers:
 
 <br>Icons: ✅- Done,🧠 -working on it, ❌ - ongoing
 
-<br>Task_1 PostrgeSQL (docker: PSQL) 🧠
-<br>A) Deploy a PostgreSQL locally 🧠
-<br>B) Create a database ❌
-<br>C) SQL queries (tables creation) ❌
-<br>D) Run a test ❌
+<br>Task_1 PostrgeSQL (docker: PSQL) ✅
+<br>A) Deploy a PostgreSQL locally (via docker) ✅
+<br>B) Create a database ✅
+<br>C) create simple table ✅
+<br>D) Run a test ✅
 
-<br>Task_2 Backend (docker: java_be) ❌
-<br>A) Create a project with Java Spring Boot Framework ❌
+<br>Task_2 Backend (docker: java_be) 🧠
+<br>A) Create a project with Java Spring Boot Framework 🧠
 <br>B) Configure a connection to PostgreSQL ❌
 <br>C) JPA/Hibernate for table mapping ❌
 <br>D) CRUD operations ❌
