@@ -55,4 +55,7 @@ CREATE TABLE userlog(userlog_id SERIAL PRIMARY KEY,username varchar (255),login_
 
 <b>The database structure: </b>
 ![alt text](images/image3.png)
+
+<b> Executing </b><i>docker exec -it postgres-db psql -d main_db -U test -c "\dt"</i><b> I got:</b>
+![alt text](images/image1.png)
 </br>
