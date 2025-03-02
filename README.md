@@ -11,8 +11,8 @@ It covers:
 🟢 Prometheus + Grafana
 
 
-Goal: Create a microservice application with a backend (Java Spring Boot - REST API) and a worker (Python FastAPI) 
-that will run Docker containers, orchastrated with K8s, deployed on AWS EKS with automated CI/CD in Jenkins.
+<b>Goal: Create a microservice application with a backend (Java Spring Boot - REST API) and a worker (Python FastAPI) 
+that will run Docker containers, orchastrated with K8s, deployed on AWS EKS with automated CI/CD in Jenkins. </b>
 
  Model scenario: User management and authentication system
  Manage user accounts, enabling registration, login, password reset, and profile management 
@@ -41,9 +41,9 @@ that will run Docker containers, orchastrated with K8s, deployed on AWS EKS with
 
 
 </br>
-Icons: ✅- Done,🧠 -working on it, ❌ - ongoing
+<b>Icons: ✅- Done,🧠 -working on it, ❌ - ongoing </b>
 
-<br>Task_1 PostrgeSQL (docker: PSQL) ✅
+<br><b>Task_1 PostrgeSQL (docker: PSQL) ✅ </b>
 A) Deploy a PostgreSQL in docker ✅
 
 B) Create a database ✅
@@ -54,7 +54,7 @@ D) Test connction ✅
 
 E) Create tables via pgAdmin<i>credentials(id,username, password_hash, email)</i> and <i> userstat(username,status) </i> and <i> userlog(userlog_id,username,login_status,geo_ip,timestamp) ✅
 
-Task_2 Backend (docker: java_be) 🧠
+<b>Task_2 Backend (docker: java_be) 🧠 </b>
 
 A) Create a project with Java Spring Boot Framework 🧠
 
