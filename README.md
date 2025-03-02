@@ -44,6 +44,7 @@ that will run Docker containers, orchastrated with K8s, deployed on AWS EKS with
 <b>Icons: ✅- Done,🧠 -working on it, ❌ - ongoing </b>
 
 <br><b>Task_1 PostrgeSQL (docker: PSQL) ✅ </b>
+
 A) Deploy a PostgreSQL in docker ✅
 
 B) Create a database ✅

@@ -1,4 +1,4 @@
-Task_1 PostgreSQL
+<b>Task_1 PostgreSQL</b>
 
 I downlaoded PostgreSQL from docker hub as a pre-built image by executing following command:
 <i> docker pull postges:latest</i>
@@ -44,4 +44,7 @@ CREATE TABLE userstat (username varchar(255) PRIMARY KEY,status varchar(255) NOT
 
 CREATE TABLE userlog(userlog_id SERIAL PRIMARY KEY,username varchar (255),login_status varchar(255) NOT NULL,geo_ip varchar(3) NOT NULL,tmstmp TIMESTAMP NOT NULL,FOREIGN KEY (username) REFERENCES credentials (username)); 
 </i>
+
+The visualization of database structure:
+![alt text](/images/image3.png)
 </br>
