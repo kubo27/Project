@@ -5,7 +5,7 @@
 <br>
 <br> After reading the documentation for PostgreSQL from docker hub (https://hub.docker.com/_/postgres) I run <i>docker volume create postgres-data </i> to persist some future data in the database.
 <br> I executed the following command to create a PostgreSQL container:
-<br> <i>docker run -d --name postgres-db -e POSTGRES_USER=test -e POSTGRES_PASSWORD=test -e POSTGRES_DB=main_db -p 5432:5432 -v postgres_data:/var/lib/postgresql/data postgres:latest <i>
+<br> <i>docker run -d --name postgres-db -e POSTGRES_USER=test -e POSTGRES_PASSWORD=test -e POSTGRES_DB=main_db -p 5432:5432 -v postgres_data:/var/lib/postgresql/data postgres:latest </i>
 <br>
 <br> Postgres instace was started <i> docker ps </i>
 <br>
