@@ -39,25 +39,9 @@
 
 </br> I designed specific SQL queries to create a tables and relations between them.
 
-<br>  CREATE TABLE credentials (
-	username varchar(255) PRIMARY KEY,
-	password_hash varchar(72) NOT NULL,
-	email varchar(255) NOT NULL
-);
+<br>  CREATE TABLE credentials (username varchar(255) PRIMARY KEY password_hash varchar(72) NOT NULL, email varchar(255) NOT NULL);
 
-CREATE TABLE userstat (
-	username varchar(255) PRIMARY KEY,
-	status varchar(255) NOT NULL,
+CREATE TABLE userstat (username varchar(255) PRIMARY KEY,status varchar(255) NOT NULL,FOREIGN KEY (username) REFERENCES credentials (username));
 
-	FOREIGN KEY (username) REFERENCES credentials (username)
-);
-
-CREATE TABLE userlog(
-	userlog_id SERIAL PRIMARY KEY,
-	username varchar (255),
-	login_status varchar(255) NOT NULL,
-	geo_ip varchar(3) NOT NULL,
-	tmstmp TIMESTAMP NOT NULL,
-
-	FOREIGN KEY (username) REFERENCES credentials (username)
-) 
+CREATE TABLE userlog(userlog_id SERIAL PRIMARY KEY,username varchar (255),login_status varchar(255) NOT NULL,geo_ip varchar(3) NOT NULL,tmstmp TIMESTAMP NOT NULL,FOREIGN KEY (username) REFERENCES credentials (username)); 
+</br>
