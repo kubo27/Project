@@ -46,15 +46,7 @@
 
 <b> I designed specific SQL queries to create a tables and relations between them. </b>
 
-<i>CREATE TABLE credentials (username varchar(255) PRIMARY KEY password_hash varchar(72) NOT NULL, email varchar(255) NOT NULL);
-
-CREATE TABLE userstat (username varchar(255) PRIMARY KEY,status varchar(255) NOT NULL,FOREIGN KEY (username) REFERENCES credentials (username));
-
-CREATE TABLE userlog(userlog_id SERIAL PRIMARY KEY,username varchar (255),login_status varchar(255) NOT NULL,geo_ip varchar(3) NOT NULL,tmstmp TIMESTAMP NOT NULL,FOREIGN KEY (username) REFERENCES credentials (username)); 
-</i>
-
-<b>The database structure: </b>
-![alt text](images/image3.png)
+<i>CREATE TABLE users ( username varchar(255) PRIMARY KEY, password_hash varchar(72) NOT NULL, email varchar(255) NOT NULL, status varchar(255) NOT NULL);</i>
 
 <b> Executing </b><i>docker exec -it postgres-db psql -d main_db -U test -c "\dt"</i><b> I got:</b>
 

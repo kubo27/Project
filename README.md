@@ -22,20 +22,14 @@ that will run Docker containers, orchastrated with K8s, deployed on AWS EKS with
                      - user status is set to "unverified"
 
  - user login - the user enters their username and password
-              - The backend verifiees the password hash
-              - if successful, the backend generates a JWT token for authentication
+              - The backend verifies the password hash
 
  - email verification - when the user clicks on the link in the email, the backend updates the status to "verified"
 
- - password reset - if the user forgets password
-                  - the backend generates a one-time token and sends it via email
- 
  Suspicious account detection 
  - FastAPI worker periodically scans the database for suspicious accounts:
-        - multiple failed login attempts
         - multiple accounts using the same email address
-        - login attempts from different countries in a short time
-        - if suspicious pattern is detected, the worker flash the account as "flagged" and create an notification
+        - rude username
 
 
 
@@ -53,9 +47,9 @@ C) Create test table ✅
 
 D) Test connction ✅
 
-E) Create tables via pgAdmin <i>credentials(id,username, password_hash, email)</i> and <i> userstat(username,status) </i> and <i> userlog(userlog_id,username,login_status,geo_ip,timestamp) ✅
+E) Create table via pgAdmin <i>users(id,username, password_hash, email,status) </i>
 
-<b>Task_2 Backend (docker: java_be) 🧠 </b>
+<b>Task_2 Backend (docker: java_be) 🧠 </b> 
 
 A) Create a project with Java Spring Boot Framework 🧠
 
