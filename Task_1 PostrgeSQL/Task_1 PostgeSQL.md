@@ -46,8 +46,15 @@
 
 <b> I designed specific SQL queries to create a tables and relations between them. </b>
 
-<i>CREATE TABLE users ( username varchar(255) PRIMARY KEY, password_hash varchar(72) NOT NULL, email varchar(255) NOT NULL, status varchar(255) NOT NULL);</i>
-
+<i>
+```
+CREATE TABLE users ( 
+    username varchar(255) PRIMARY KEY,
+     password_hash varchar(72) NOT NULL, 
+     email varchar(255) NOT NULL, 
+     status varchar(255) NOT NULL
+);</i>
+```
 <b> Executing </b><i>docker exec -it postgres-db psql -d main_db -U test -c "\dt"</i><b> I got:</b>
 
 
