@@ -17,9 +17,9 @@ spring.jpa.show-sql=true
 ```
 <i> ./mvnw spring-boot:run </i> was executed and backend>postgres db connection established
 
-In the next step I coded backend logic. The first java file was Users.java in /src/main/java/com/kubo27/backend/ path.
-
-
+In the next step I needed to create Java entity class, which represents table in database. This class is annotated with @Entity, so Hibernate can map it to SQL table.
+The first java file: Users.java in /src/main/java/com/kubo27/backend/ path. 
+#username as a primary key
 ```
 package com.kubo27.backend.model;
 
@@ -44,7 +44,7 @@ public class Users{
 ```
 
 
-The next file was UsersRepository.java
+The next file : UsersRepository.java is a JPA repository as an interface that communicates witg SQL db without using sql query. JPA automatically provides a CRUD operations (create,read,update,delete).
 
 
 ```
@@ -58,7 +58,8 @@ public interface UsersRepository extends JpaRepository<Users, String>{
 ```
 
 
-And the last file UserController.java
+And the last UserController.java. This file contains all the logic for the user registration via REST API.
+I created only one mapping for testing purposes
 
 
 ```
@@ -85,5 +86,10 @@ public class UserController {
 
 
 }
+```
+
+
+```
+curl -X POST "http://localhost:8080/api/user" -H "Content-Type: application/json" -d '{"username": "testuser","password_hash":"124faasf21","email":"test@user.com","status":"verified"}'
 ```
 

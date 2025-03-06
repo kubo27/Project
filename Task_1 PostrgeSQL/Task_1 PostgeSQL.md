@@ -1,51 +1,56 @@
 <b>Task_1 PostgreSQL</b>
 
-<b>I downlaoded PostgreSQL from docker hub as a pre-built image by executing following command: </b>
-<i> docker pull postges:latest</i>
+Pre-build image of PostgreSQL can be downloaded from docker hub by executing following command: 
+```
+docker pull postges:latest
+```
 
- <b>After reading the documentation for PostgreSQL from docker hub (https://hub.docker.com/_/postgres) I run</b> 
- <i>docker volume create postgres-data </i> 
- <b> to persist some future data in the database.</b>
+Documentation for PostgreSQL image can be found on the following link https://hub.docker.com/_/postgres. 
+ 
+To persist some future data in the database the docker volume needs to be created
+```
+docker volume create postgres-data
+```
 
- <b>I executed the following command to create a PostgreSQL container:</b>
- <i>docker run -d --name postgres-db -e POSTGRES_USER=test -e POSTGRES_PASSWORD=test -e POSTGRES_DB=main_db -p 5432:5432 -v postgres_data:/var/lib/postgresql/data postgres:latest </i>
+The PostgreSQL image uses several environment variables. The only required variable is POSTGRES_PASSWORD.
+The following command can be executed to create a PostgreSQL container:
+# -e is used for environment variables
+# -p is used for port mapping
+# -v is used for volume mapping
+# --name <custom_name_of_the_container>
 
-<b> Postgres instace was started </b>
-<i> docker ps </i>
+```
+ docker run -d --name postgres-db -e POSTGRES_USER=test -e POSTGRES_PASSWORD=test -e POSTGRES_DB=main_db -p 5432:5432 -v postgres_data:/var/lib/postgresql/data postgres:latest 
+```
 
+ To check the status of containers:
+```
+docker ps -a
+```
  ![alt text](images/image.png)
 
- <b>I connected to the container via psql (terminal connection) running the following command:</b>
- <i> docker exec -it postgres-db psql -d main_db -U test </i> # -it interactive terminal, -d database name, -U username
+Terminal connection to container via psql:
+```
+docker exec -it postgres-db psql -d main_db -U test </i> # -it interactive terminal, -d database name, -U username
+```
 
- <b>Simple table was created </b>
-<i> docker exec -it postgres-db psql -d main_db -U test -c 'CREATE TABLE users(id int, username char(8),password char(8))' </i>
- 
- <b>I populated the table users </b>
- <i> docker exec -it postgres-db psql -d main_db -U test -c "INSERT INTO users (id,username,password) VALUES (1,'test',12345);" </i> and <i> docker exec -it postgres-db psql -d main_db -U test -c "INSERT INTO users VALUES (2,'test_2',12345);" </i>
-
- <b>Quick check</b> 
- <i>  docker exec -it postgres-db psql -d main_db -U test -c "SELECT * FROM users;" </i>
-
- ![alt text](images/image-4.png)
-
-
- <b>As we can see the postgres-db container is listening on 0.0.0.0:5432</b>
+ The containerized postgres-db is listening on 0.0.0.0:5432<
 
 ![alt text](images/image-2.png)
 
- <b>So I ran simple test via PGadmin (I wanted to join to that database from my host computer)</b>
+Simple test can be done via pgAdmin.
 
- <b>I dumped incoming packets via</b>
- <i> tcpdump -nli any port 5432 </i>
- <b>so I could see what is going on. As we can see the test ran successfully.</b>
+Incoming packets to the server(to the containerized postgres) can be dumped by executing the following command:
+```
+tcpdump -nli any port 5432 
+```
+The test ran successfully.
 
 ![alt text](images/image-6.png)
 
- ![alt text](images/image-5.png)
+![alt text](images/image-5.png)
 
-<b> I designed specific SQL queries to create a tables and relations between them. </b>
-
+I designed a SQL querie to create a table and then I executed it in pgAdmin.
 
 ```
 CREATE TABLE users ( 
@@ -55,8 +60,10 @@ CREATE TABLE users (
      status varchar(255) NOT NULL
 );
 ```
-<b> Executing </b><i>docker exec -it postgres-db psql -d main_db -U test -c "\dt"</i><b> I got:</b>
-
+To list all the tables in the current schema:
+```
+docker exec -it postgres-db psql -d main_db -U test -c "\dt" I got:
+```
 
 ![alt text](images/image1.png)
 </br>
