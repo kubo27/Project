@@ -56,7 +56,7 @@ public interface UsersRepository extends JpaRepository<Users, String>{
 ```
 
 
-And the last <b>UserController.java</b>. This file contains all the logic for the user registration via REST API.
+And the last one <b>UserController.java</b>. This file contains all the logic for the user registration via REST API.
 I created only one mapping for testing purposes.
 
 
@@ -90,7 +90,7 @@ public class UserController {
 ```
 curl -X POST "http://localhost:8080/api/user" -H "Content-Type: application/json" -d '{"username": "testuser","password_hash":"124faasf21","email":"test@user.com","status":"verified"}'
 ```
-As we can see the user was sucesffully registered:
+As we can see the user was successfully registered:
 ```
 docker exec -it postgres-db psql -d main_db -U test -c "SELECT * FROM users;"
 ```
