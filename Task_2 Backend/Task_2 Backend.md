@@ -114,29 +114,153 @@ docker exec -it postgres-db psql -d main_db -U test -c "DELETE FROM users where 
 The table users is now empty:
 ![alt text](images/image_2.png)
 
-I added a few new lines into UserController.java to set user's status to "unverified" and auto-generate token. setStatus and setToken are setters of Users.java (dependency Lombok) 
+I added a few new lines into UserController.java to set user's status to "unverified" and auto-generate token. setStatus and setToken are setters of Users.java (dependency Lombok).
+
+After the user provides username,  password and email address via /api/user/register, the data will be written into the table users.  User's status will be set to "unverified" and token will be auto-generated. Another @PostMapping is for verifying user account (simulation of clicking on a link in mail). The /api/user/verify is created with two input parameters - username and token - to verify the user account and change the status to "verified".
 ```
-    @PostMapping
+@RestController
+@RequestMapping("/api/user")
+public class UserController {
+
+    @Autowired
+    UsersRepository usersRepository;
+
+    @PostMapping("/register")
     public String create(@RequestBody Users users) {
-        users.setStatus("uverified");
+        users.setStatus("unverified");
         users.setToken(generateRandomToken());
         usersRepository.save(users);
 
         return "User is created";
     }
 
+    @PostMapping("/verify")
+    public String verifyUser(@RequestParam String username,@RequestParam String token) {
+            Optional<Users> user = usersRepository.findByUsername(username);
+
+            if(user.isPresent()) {
+                Users pickedUser = user.get();
+                if(pickedUser.getToken().equals(token)){
+                        pickedUser.setStatus("verified");
+                        usersRepository.save(pickedUser);
+                        return "User verified successfully!";
+                }
+                else {
+                        return "Invalid token!";
+                }
+            }
+            else{
+                return "User not found!";
+
+            }
+    }
+
 private String generateRandomToken(){
         Random random = new Random();
-        int randomNum = random.nextInt(10000) + 50000;
+        int randomNum = random.nextInt(10000) + 20000;
 
         return String.valueOf(randomNum);
+    }
+
 
 }
+
 ```
+
+Line ``` Optional<Users> findByUsername(username); ``` need to be added into UsersRepository.java file. The UsersRepository.java is responsible for interacting with the database. This allows Spring Data JPA to automatically generate a SQL query like ``` SELECT * FROM users WHERE username = 'someUsername'; ```
 
 I ran the test
 ```
-curl -X POST "http://localhost:8080/api/user" -H "Content-Type: application/json" -d '{"username": "testuser","password_hash":"124faasf21","email":"test@user.com"}'
+curl -X POST "http://localhost:8080/api/user/register" -H "Content-Type: application/json" -d '{"username": "testuser","password_hash":"124faasf21","email":"test@user.com"}'
 ```
 And I got
 ![alt text](images/image3.png)
+
+Now its time to test /api/user/verify". 
+
+- when i provided wrong username
+```
+curl -X POST "http://localhost:8080/api/user/verify?username=test&token=26764"
+```
+![alt text](images/image4.png)
+
+Wrong token:
+```
+curl -X POST "http://localhost:8080/api/user/verify?username=testuser&token=1111"
+```
+![alt text](images/image5.png)
+
+Still "unverified"
+![alt text](images/image6.png)
+
+Last test (username exists and token provided within POST matches token in the row)
+```
+curl -X POST "http://localhost:8080/api/user/verify?username=testuser&token=26764"
+```
+![alt text](images/image7.png)
+
+Status was changed to "verified"
+
+![alt text](images/image8.png)
+
+In the next step I implemented password hash calculating via BCrypt. New dependency need to be added into my project (pom.xml)
+```
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-core</artifactId>
+    <version>5.7.3</version>
+</dependency>
+```
+
+After that I imported these packages into my UserController.java file. Below we can see what is needed to calculate hash of the password.
+```
+PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+users.setPassword_hash(passwordEncoder.encode(users.getPassword_hash()));
+```
+
+To test it:
+```
+docker exec -it postgres-db psql -d main_db -U test -c "DELETE FROM users where username='testuser';"
+curl -X POST "http://localhost:8080/api/user/register" -H "Content-Type: application/json" -d '{"username": "testuser","password_hash":"mynewpassword","email":"test@user.com"}'
+curl -X POST "http://localhost:8080/api/user/verify?username=testuser&token=26809"
+```
+
+As we can see password is securly stored:
+![alt text](images/image9.png)
+
+
+The last api is /api/users/login - this api is needed for user login - (compare given password with the hash of password stored in the table)
+
+```
+    @PostMapping("/login")
+    private String userLogin(@RequestParam String username, @RequestParam String password) {
+        Optional<Users> user = usersRepository.findByUsername(username);
+        if(user.isPresent()) {
+                Users pickedUser = user.get();
+                System.out.println(pickedUser.getPassword_hash()+"\n");
+                if(passwordEncoder.matches(password,pickedUser.getPassword_hash())){
+                        return "Login successfull!";
+                }
+                else {
+                        return "Incorrect password!";
+                }
+        }
+        else{
+                return "User not found!";
+        }
+
+    }
+
+```
+
+Test (wrong password)
+```
+curl -X POST "http://localhost:8080/api/user/login?username=testuser&password=wrongpassword"
+```
+![alt text](images/image10.png)
+
+Test (correct password)
+```
+ curl -X POST "http://localhost:8080/api/user/login?username=testuser&password=mynewpassword"
+```
+![alt text](images/image11.png)

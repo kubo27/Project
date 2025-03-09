@@ -12,7 +12,7 @@ It covers:
 
 
 <b>Goal: Create a microservice application with a backend (Java Spring Boot - REST API) and a worker (Python FastAPI) 
-that will run Docker containers, orchastrated with K8s, deployed on AWS EKS with automated CI/CD in Jenkins. </b>
+that will run Docker containers, orchastrated with K8s</b>
 
  Model scenario: User management and authentication system
  Manage user accounts, enabling registration, login, password reset, and profile management 
@@ -47,13 +47,22 @@ C) Create test table ✅
 
 D) Test connction ✅
 
-E) Create table via pgAdmin <i>users(id,username, password_hash, email,status) </i>
+E) Create table via pgAdmin <i>users(id,username, password_hash, email,status) </i> ✅
 
 <b>Task_2 Backend (docker: java_be) 🧠 </b> 
 
-A) Create a project with Java Spring Boot Framework 🧠
+A) Create a project with Java Spring Boot Framework ✅
 
-B) Configure a connection to PostgreSQL ❌
+B) Configure a connection to PostgreSQL ✅
+
+C) Create user registration api ✅
+
+D) Create user verification api ✅
+
+E) Create user login api ✅
+
+F) Containerize the backend ❌
+
 
 </br>
 
